@@ -1,0 +1,66 @@
+
+
+button {
+        --glow-color: rgb(159, 143, 225);
+        --glow-spread-color: rgba(91, 125, 248, 0.781);
+        --enhanced-glow-color: rgb(231, 206, 255);
+        --btn-color: rgb(70, 60, 107);
+        border: .25em solid var(--glow-color);
+        padding: 1em 3em;
+        color: var(--glow-color);
+        font-size: 15px;
+        font-weight: bold;
+        background-color: var(--btn-color);
+        border-radius: 1em;
+        outline: none;
+        box-shadow: 0 0 1em .25em var(--glow-color),
+                0 0 4em 1em var(--glow-spread-color),
+                inset 0 0 .75em .25em var(--glow-color);
+        text-shadow: 0 0 .5em var(--glow-color);
+        position: relative;
+        transition: all 0.3s;
+        }
+
+</style>
+<style>
+body{
+    background-color: black;
+    color: aliceblue;
+    font-family: monospace;
+    }
+
+form { 
+    width: 300px;
+    padding: 20px;
+    border: 3px solid rgb(159, 143, 225);
+    border-radius: 10px;
+    background-color: black;
+    box-shadow: 0 0 20px rgba(91, 125, 248, 0.781);
+}
+
+input[type="text"]
+{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid  rgb(159, 143, 225);
+    background-color: white;
+    
+}
+
+input[type="submit"] {
+    width: 40%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 5px;
+    background-color:  rgb(159, 143, 225);
+    color: black;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color:rgba(91, 125, 248, 0.781);
+}

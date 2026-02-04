@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- IE=edge instructs Internet Explorer to use the highest mode available to it,
+     ensuring the best rendering and compatibility with modern web standards -->
+  <link rel='stylesheet' href='style.css' />
+  
+  </head>
+<body>
+    <p>Connect to your Wifi network</p>
+    <form id="form-connect" action="/connect" method="post">
+        <label for="ssid">Wifi network name</label>
+        <br>
+        <input type="text" name="ssid" placeholder="Name of wifi access point" required> 
+        <br> <br>
+        <label for="password">Password</label> 
+        <br>
+        <input  type="text" name="password" placeholder="Password" required> 
+        <br> <br>
+        <input type="submit" value="submit">
+    </form>
+    <p>Copy the device address <strong>%MAC%</strong></p>
+</body>

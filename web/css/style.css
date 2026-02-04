@@ -1,0 +1,180 @@
+
+@font-face{
+    font-family:'myFont';
+    src:url ("fonts/MAKISUPA.TTF");
+    }
+
+body{
+    justify-content: center; /* Horizontally centers content */
+    align-items: center; /* Vertically centers content */
+    background-color: black;
+    color: aliceblue;
+    font-family: monospace;
+    
+    }
+.canvas-container {
+      height: 80vh; /* Adjust based on your needs */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  canvas.webgl {
+    width: 100%;  
+    height: 100%; 
+  }
+
+.text{
+        font-size: 40;
+        text-align: center;
+    }
+ .centered{  
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+table{
+    width: 30%;
+    font-size: larger;
+    
+}
+
+.parent{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputBalk{
+    display:block;
+    padding-left: 3%;
+    margin-left: auto;
+    margin-right:auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.diceRow{
+    display:inline-flex;
+    margin-left: 420px;
+}
+.blok{
+    display: inline-block;
+}
+
+
+
+/* From uiverse.io */
+.button {
+  --glow-color: rgb(159, 143, 225);
+  --glow-spread-color: rgba(91, 125, 248, 0.781);
+  --enhanced-glow-color: rgb(231, 206, 255);
+  --btn-color: rgb(70, 60, 107);
+  border: .25em solid var(--glow-color);
+  padding: 1em 3em;
+  color: var(--glow-color);
+  font-size: 15px;
+  font-weight: bold;
+  background-color: var(--btn-color);
+  border-radius: 1em;
+  outline: none;
+  box-shadow: 0 0 1em .25em var(--glow-color),
+          0 0 4em 1em var(--glow-spread-color),
+          inset 0 0 .75em .25em var(--glow-color);
+  text-shadow: 0 0 .5em var(--glow-color);
+  position: relative;
+  transition: all 0.3s;
+  }
+  
+  button::after {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  top: 120%;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--glow-spread-color);
+  filter: blur(2em);
+  opacity: .7;
+  transform: perspective(1.5em) rotateX(35deg) scale(1, .6);
+  }
+  
+  button:hover {
+  color: var(--btn-color);
+  background-color: var(--glow-color);
+  box-shadow: 0 0 1em .25em var(--glow-color),
+          0 0 4em 2em var(--glow-spread-color),
+          inset 0 0 .75em .25em var(--glow-color);
+  }
+  
+  button:active {
+  box-shadow: 0 0 0.6em .25em var(--glow-color),
+          0 0 2.5em 2em var(--glow-spread-color),
+          inset 0 0 .5em .25em var(--glow-color);
+  }
+
+
+.formButton{
+  width: 40%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 5px;
+  background-color:  rgb(159, 143, 225);
+  color: black;
+  cursor: pointer;
+}
+
+.switchTog{
+    float: right;
+}
+   /* The container */
+.container {
+    /* display:inline-flex; */
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    
+  }
+
+/* Create a custom radio button */
+ .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: rgba(83, 84, 87, 0.432);
+    border-radius: 50%;
+  }
+  /* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+    background-color: rgba(136, 137, 138, 0.596);
+  }
+
+/* When the radio button is checked, add a purple background */
+ .container input:checked ~ .checkmark {
+    background-color: rgb(159, 143, 225);
+  }
+  
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+/* Show the indicator (dot/circle) when checked */
+ .container input:checked ~ .checkmark:after {
+    display: block;
+  }    

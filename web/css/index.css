@@ -1,0 +1,29 @@
+body {
+    display: flex;
+    justify-content: center; /* Horizontally centers content */
+    align-items: center; /* Vertically centers content */
+    height: 100vh; /* Make the body height equal to the viewport height */
+    margin: 0; /* Remove default margin */
+}
+
+form { 
+    width: 300px;
+    padding: 20px;
+    border: 3px solid rgb(159, 143, 225);
+    border-radius: 10px;
+    background-color: black;
+    box-shadow: 0 0 20px rgba(91, 125, 248, 0.781);
+  }
+  
+  input[type="text"]
+  {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid  rgb(159, 143, 225);
+    background-color: white;
+    
+  }
+  

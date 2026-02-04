@@ -1,0 +1,126 @@
+#include "esp_log.h"
+#include "esp_system.h"
+#include "esp_err.h"
+#include "esp_task_wdt.h"
+
+#include "driver/i2c.h"
+
+#include "ahrs.h"
+#include "mpu9250.h"
+#include "calibrate.h"
+#include "common.h"
+
+#define I2C_MASTER_NUM I2C_NUM_0 /*!< I2C port number for master dev */
+
+static const char *TAG = "IMU";
+
+calibration_t cal = {
+    .mag_offset = {.x = -4.671875, .y = 12.263672, .z = -41.062500},
+    .mag_scale = {.x = 1.056865, .y = 0.999516, .z = 0.949378},
+    .accel_offset = {.x = 0.006294, .y = 0.025298, .z = 0.053187},
+    .accel_scale_lo = {.x = 1.003123, .y = 1.016245, .z = 1.044852},
+    .accel_scale_hi = {.x = -1.004070, .y = -0.990380, .z = -0.981661},
+
+     .gyro_bias_offset = {.x = 1.962422, .y = -1.681793, .z = -0.134452}};
+
+/**
+ * Transformation:
+ *  - Rotate around Z axis 180 degrees
+ *  - Rotate around X axis -90 degrees
+ * @param  {object} s {x,y,z} sensor
+ * @return {object}   {x,y,z} transformed
+ */
+static void transform_accel_gyro(vector_t *v)
+{
+  float x = v->x;
+  float y = v->y;
+  float z = v->z;
+
+  v->x = -x;
+  v->y = -z;
+  v->z = -y;
+}
+
+/**
+ * Transformation: to get magnetometer aligned
+ * @param  {object} s {x,y,z} sensor
+ * @return {object}   {x,y,z} transformed
+ */
+static void transform_mag(vector_t *v)
+{
+  float x = v->x;
+  float y = v->y;
+  float z = v->z;
+
+  v->x = -y;
+  v->y = z;
+  v->z = -x;
+}
+/**
+* Evaluate the Dice face facing up
+* @param  {object} accel {x,y,z} sensor
+* @return {INT} {1..6}
+*/
+int detectDiceFace(vector_t a) {
+    // This function returns the local maximum which is the constant gravitational pull when standing still
+    float max = fmaxf(fabsf(a.x), fmaxf(fabsf(a.y), fabsf(a.z)));
+
+    //This part check on which axis the constant gravitational pull lies and returns the face.
+    if (fabsf(a.x) == max) {
+        return a.x > 0 ? 3 : 4;
+    } else if (fabsf(a.y) == max) {
+        return a.y > 0 ? 2 : 5;
+    } else {
+        return a.z > 0 ? 1 : 6;
+    }
+}
+
+void run_imu(void)
+{
+
+  i2c_mpu9250_init(&cal);
+  ahrs_init(SAMPLE_FREQ_Hz, 0.8);
+
+  uint64_t i = 0;
+  while (true)
+  {
+    vector_t va, vg, vm;
+
+    // Get the Accelerometer, Gyroscope and Magnetometer values.
+    ESP_ERROR_CHECK(get_accel_gyro_mag(&va, &vg, &vm));
+
+/**TO DO **/
+// interrupt for getting the acceleration for the dice
+/******************************/
+    int face = detectDiceFace(va);
+    ESP_LOGI(TAG, "Acceleration - X: %f, Y: %f, Z: %f",
+             va.x, va.y, va.z);
+    ESP_LOGI(TAG, "DiceTRow:  %d",face);
+/******************************/
+    // Transform these values to the orientation of our device.
+    transform_accel_gyro(&va);
+    transform_accel_gyro(&vg);
+    transform_mag(&vm);
+
+    // Apply the AHRS algorithm
+    ahrs_update(DEG2RAD(vg.x), DEG2RAD(vg.y), DEG2RAD(vg.z),
+                va.x, va.y, va.z,
+                vm.x, vm.y, vm.z);
+
+    // Print the data out every 10 items
+    if (i++ % 10 == 0)
+    {
+      float temp;
+      ESP_ERROR_CHECK(get_temperature_celsius(&temp));
+
+      float heading, pitch, roll;
+      ahrs_get_euler_in_degrees(&heading, &pitch, &roll);
+      // ESP_LOGI(TAG, "heading: %2.3f°, pitch: %2.3f°, roll: %2.3f°, Temp %2.3f°C", heading, pitch, roll, temp);
+
+      // Make the WDT happy
+      vTaskDelay(0);
+    }
+
+    pause();
+  }
+}

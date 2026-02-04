@@ -1,0 +1,19 @@
+nav:
+    - 🏚️ Home: index.md
+    - 🥶 OLD VERSION: cubice_version_1
+    - 📦 System Architecture: system_architecture
+    - ♟️ Learning journal: journal
+    - 📕 Research to Market: research_to_market
+    - 🧰 Embedded:
+      - Requirements: embedded/requirements
+      - Code: embedded/code
+      - Wiring Diagram & BOM: embedded/WiringDiagram_BOM
+    - 🌐 Web:
+      - Technical documentation & API reference: web/technical_documentation
+      - Code: web/code
+      - Database: web/database
+    - 👩‍🎨 User Experience Design:
+      - Concept & Design: uxd/concept_design
+      - Create & Test: uxd/create_test
+      - Conclude & Reflect: uxd/conclude_reflect
+    

@@ -1,0 +1,104 @@
+      
+
+
+.dice {  
+        padding: 4px;  
+        background-color: rgb(142, 137, 137); 
+        width: 104px;  
+        height: 104px;  
+        margin-left: 50px;
+        border-radius: 10%;
+        box-shadow: 0px 10px lightslategray;
+    }
+
+    .xsdice {
+        padding: 4px;  
+        background-color: rgb(142, 137, 137);  
+        width: 40px;  
+        height: 40px;  
+         margin-left: 10px; 
+        border-radius: 10%;
+        box-shadow:  0px -4px  lightslategray;
+    }
+    .xsdice .dot{
+        display: block;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color:rgb(59, 55, 55);
+    }
+    .xsdiceRow{
+        display:inline-flex;
+        margin-left: 20px;
+        margin-bottom: 10px;
+    }
+.dot {
+    display: block;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color:rgb(59, 55, 55);
+      }
+.first-face {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        float: left;
+        }
+
+.second-face{
+    display: flex;             
+    justify-content : space-between;
+    float: left;
+    }
+.second-face .dot:nth-of-type(2) {
+    align-self: flex-end;
+    }
+
+ .third-face{
+        display: flex;
+           justify-content : space-between;
+           float: left;
+    }
+.third-face .dot:nth-of-type(3) {
+        align-self: flex-end;
+    }
+.third-face .dot:nth-of-type(2) {
+        align-self: center;
+        }
+.fourth-face {
+            display: flex;
+            justify-content: space-between;
+            float: left;
+
+}
+.fourth-face .column {
+    display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+.fifth-face {
+        display: flex;
+        justify-content: space-between;
+        float: left;
+
+}
+.fifth-face .column {
+display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.fifth-face .column:nth-of-type(2) {
+    justify-content: center;
+    }
+.six-face {
+        display: flex;
+        justify-content: space-between;
+        float: left;
+
+}
+.six-face .column {
+display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

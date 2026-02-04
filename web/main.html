@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- IE=edge instructs Internet Explorer to use the highest mode available to it,
+     ensuring the best rendering and compatibility with modern web standards -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel='stylesheet' href='./css/style.css' />
+  <link rel='stylesheet' href='./css/dice.css' />
+  <script src="https://cdn.jsdelivr.net/npm/mqtt/dist/mqtt.min.js"></script>
+  <title>Cubice</title>
+  </head>
+<body>
+  <p style= "font-size: 30px">Dice Thrown: </p>
+  <br>
+
+
+
+  
+  <div class="inputBalk centered">
+    <p style= "font-size: 30px" id="batteryStatus">Waiting for battery status...</p>
+    <!-- the webgl canvas -->
+    <canvas class="webgl"></canvas> 
+
+    <div>
+    <button id= "spin" class="centered button" >Rolled</button>
+    </div>
+  </div>
+ 
+ 
+
+     <p style= "font-size: 30px" >last throw: </p>  
+     <p id="lastInsertedRow"></p>
+     <div id="dataContainer">
+      <p id="player" ></p>
+      <p id="rolled"></p>
+      <p id="time"></p>
+    </div>
+      <!-- <script type="module" src="./js/mqtt.js"></script> -->
+      <script type="importmap">
+        {
+            "imports": {
+                "three": "./modules/three/build/three.module.js",
+                "GLTFLoader": "./modules/three/examples/jsm/loaders/GLTFLoader.js"
+            }
+        }
+      </script>
+     
+      <script type="module" src="./js/main.js"></script>
+       
+</body>
+
+</html>
